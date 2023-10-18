@@ -42,7 +42,11 @@ const Header = ({ userInfo }) => {
     return (
       <View style={tailwind`flex-row items-center`}>
         <Text
-          style={tailwind`text-slate-100 text-3xl absolute top-4 left-7 uppercase`}
+          style={
+            Platform.OS == "web"
+              ? tailwind`text-slate-100 text-3xl absolute top-4 left-7 uppercase`
+              : tailwind`text-2xl text-white ml-4 mt-3`
+          }
         >
           Bio-Nise
         </Text>
@@ -121,7 +125,12 @@ const Header = ({ userInfo }) => {
     <View
       style={tailwind`w-full bg-slate-800 h-15 shadow-xl rounded-br-xl rounded-bl-xl`}
     >
-      <Text style={tailwind`text-2xl text-white ml-4 mt-3`}>Bio-nise</Text>
+      {isAuthenticated ? (
+        renderAuthenticatedContent()
+      ) : (
+        <Text style={tailwind`text-2xl text-white ml-4 mt-3`}>Bio-Nise</Text>
+      )}
+      {isAuthenticated && isDropdownMenuOpen && renderDropdownMenu()}
     </View>
   );
 };

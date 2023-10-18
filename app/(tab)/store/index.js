@@ -1,12 +1,12 @@
 import { View, Text, Platform, FlatList } from "react-native";
 import React from "react";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 import tailwind from "twrnc";
-import { allStores } from "../../data/Storedata";
-import CategoryList from "../../components/CategoryList.js/index.js";
+import { allStores } from "../../../data/Storedata";
+import CategoryList from "../../../components/CategoryList";
 
 const Stores = () => {
   const insets = useSafeAreaInsets();

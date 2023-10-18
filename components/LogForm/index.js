@@ -114,14 +114,18 @@ const LogForm = () => {
               <Text style={tailwind`text-blue-800 text-sm`}>Login</Text>
             </TouchableOpacity>
 
-            {/* <View style={tailwind`flex flex-col items-center mt-5 gap-2`}>
-              <Text style={tailwind`text-xs`}>Not Registered?</Text>
-              <Pressable onPress={() => router.replace("/register")}>
-                <Text style={tailwind`text-xs underline `}>
-                  Create Your Own Account
-                </Text>
-              </Pressable>
-            </View> */}
+            {Platform.OS == "web" ? (
+              []
+            ) : (
+              <View style={tailwind`flex flex-col items-center mt-5 gap-2`}>
+                <Text style={tailwind`text-xs`}>Not Registered?</Text>
+                <Pressable onPress={() => router.replace("/user/register")}>
+                  <Text style={tailwind`text-xs underline `}>
+                    Create Your Own Account
+                  </Text>
+                </Pressable>
+              </View>
+            )}
           </View>
         )}
       </Formik>

@@ -14,21 +14,25 @@ const Categories = () => {
   ];
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => router.push(item.id)}>
-      <Text style={tailwind`text-lg text-black font-semibold ml-5 mt-[5px] `}>
+    <TouchableOpacity
+      onPress={() => router.push(item.id)}
+      style={tailwind`border rounded-lg  `}
+    >
+      <Text style={tailwind`text-lg text-black font-semibold p-1 `}>
         {item.name}
       </Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={tailwind`flex-1 rounded border gap-6`}>
+    <View style={tailwind`flex-1 `}>
       <FlatList
         data={categories}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={tailwind`gap-4`}
       />
     </View>
   );

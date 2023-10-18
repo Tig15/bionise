@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   Pressable,
+  Platform,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -68,7 +69,11 @@ const RegForm = () => {
           touched,
         }) => (
           <View
-            style={tailwind`border w-[400px] h-[440px] justify-center items-center rounded bg-slate-100`}
+            style={
+              Platform.OS == "web"
+                ? tailwind`border w-[400px] h-[440px] justify-center items-center rounded bg-slate-100`
+                : tailwind`border w-[360px] h-[460px] justify-center items-center rounded bg-slate-100`
+            }
           >
             <View style={tailwind`mb-3 gap-1`}>
               <TextInput
@@ -209,14 +214,18 @@ const RegForm = () => {
               <Text style={tailwind`text-slate-100 text-sm`}>Sign-Up</Text>
             </TouchableOpacity>
 
-            {/* <View style={tailwind`flex flex-row mt-5 gap-2`}>
-              <Text style={tailwind`text-xs`}>Already Register?</Text>
-              <Pressable onPress={() => router.replace("/login")}>
-                <Text style={tailwind`text-xs underline `}>
-                  Go Back To Login
-                </Text>
-              </Pressable>
-            </View> */}
+            {Platform.OS === "web " ? (
+              []
+            ) : (
+              <View style={tailwind`flex flex-row mt-5 gap-2`}>
+                <Text style={tailwind`text-xs`}>Already Register?</Text>
+                <Pressable onPress={() => router.replace("/user/login")}>
+                  <Text style={tailwind`text-xs underline `}>
+                    Go Back To Login
+                  </Text>
+                </Pressable>
+              </View>
+            )}
           </View>
         )}
       </Formik>

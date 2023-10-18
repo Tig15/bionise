@@ -1,10 +1,10 @@
 import { View, Text, Platform } from "react-native";
 import React from "react";
-import Header from "../components/Header";
+import Header from "../../../components/Header";
 import { StatusBar } from "expo-status-bar";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 import tailwind from "twrnc";
-import UserInfo from "../components/UserInfo";
+import UserInfo from "../../../components/UserInfo";
 
 const Home = () => {
   return (
