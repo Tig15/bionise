@@ -5,8 +5,11 @@ import { StatusBar } from "expo-status-bar";
 import Sidebar from "../../components/Sidebar";
 import tailwind from "twrnc";
 import UserInfo from "../../components/UserInfo";
+import withUserInfo from "../../firebase/withUserInfo";
+import AuthInfo from "../../components/AuthInfo";
 
-const User = () => {
+const User = ({ userInfo }) => {
+  const isAuthenticated = userInfo !== null;
   return (
     <>
       <StatusBar hidden />
@@ -20,11 +23,17 @@ const User = () => {
               : tailwind`flex-1`
           }
         >
-          <UserInfo />
+          {Platform.OS == "web" ? (
+            <UserInfo />
+          ) : isAuthenticated ? (
+            <UserInfo />
+          ) : (
+            <AuthInfo />
+          )}
         </View>
       </View>
     </>
   );
 };
 
-export default User;
+export default withUserInfo(User);
