@@ -48,9 +48,9 @@ const LogForm = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <View
-            style={tailwind`border w-[350px] h-[400px] justify-center items-center rounded bg-slate-100`}
+            style={tailwind`border w-[320px] h-[300px] justify-center items-center rounded-lg bg-slate-100`}
           >
-            <View style={tailwind`mb-6 gap-1`}>
+            <View style={tailwind`mb-4 gap-1`}>
               <TextInput
                 style={tailwind`w-70 h-10 border-slate-950 border mb-4 px-2 rounded`}
                 onChangeText={handleChange("email")}
@@ -68,7 +68,7 @@ const LogForm = () => {
               )}
             </View>
 
-            <View style={tailwind`mb-6 gap-1`}>
+            <View style={tailwind`mb-4 gap-1`}>
               <View style={tailwind`relative`}>
                 <TextInput
                   style={tailwind`w-70 h-10 border-slate-950 border mb-4 px-2 rounded`}

@@ -71,7 +71,7 @@ const RegForm = () => {
           <View
             style={
               Platform.OS == "web"
-                ? tailwind`border w-[400px] h-[440px] justify-center items-center rounded bg-slate-100`
+                ? tailwind`border w-[400px] h-[440px] justify-center items-center rounded-lg bg-slate-100`
                 : tailwind`border w-[360px] h-[460px] justify-center items-center rounded bg-slate-100`
             }
           >
@@ -214,9 +214,7 @@ const RegForm = () => {
               <Text style={tailwind`text-slate-100 text-sm`}>Sign-Up</Text>
             </TouchableOpacity>
 
-            {Platform.OS === "web " ? (
-              []
-            ) : (
+            {Platform.OS === "web" ? null : (
               <View style={tailwind`flex flex-row mt-5 gap-2`}>
                 <Text style={tailwind`text-xs`}>Already Register?</Text>
                 <Pressable onPress={() => router.replace("/user/login")}>

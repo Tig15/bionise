@@ -6,7 +6,7 @@ import Sidebar from "../../../components/Sidebar";
 import tailwind from "twrnc";
 import UserInfo from "../../../components/UserInfo";
 
-const Home = () => {
+const User = () => {
   return (
     <>
       <StatusBar hidden />
@@ -21,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default User;

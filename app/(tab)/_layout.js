@@ -16,7 +16,9 @@ const MainLayout = () => {
         name="index"
         options={{
           tabBarLabel: "Home",
-          tabBarIcon: () => <MaterialCommunityIcons name="home" size={20} />,
+          tabBarIcon: () => (
+            <MaterialCommunityIcons name="home-outline" size={24} />
+          ),
         }}
       />
       <Tabs.Screen name="store" options={{ href: null }} />
@@ -25,7 +27,7 @@ const MainLayout = () => {
         options={{
           tabBarLabel: "User",
           tabBarIcon: () => (
-            <MaterialCommunityIcons name="face-man-profile" size={20} />
+            <MaterialCommunityIcons name="account-outline" size={24} />
           ),
         }}
       />
