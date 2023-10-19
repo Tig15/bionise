@@ -21,8 +21,8 @@ const AuthModal = ({ visible, onClose }) => {
           >
             <Text
               style={[
-                tailwind`text-2xl text-blue-200 border w-20 pl-2 rounded cursor-pointer`,
-                isLogin ? tailwind`bg-gray-800` : null,
+                tailwind`text-2xl text-blue-200 w-20 pl-3 pt-1 pb-1 rounded-lg `,
+                isLogin ? tailwind`bg-gray-900 ` : null,
               ]}
               onPress={() => toggleForm(true)}
             >
@@ -30,8 +30,8 @@ const AuthModal = ({ visible, onClose }) => {
             </Text>
             <Text
               style={[
-                tailwind`text-2xl text-blue-200 border w-25 pl-2 rounded cursor-pointer`,
-                !isLogin ? tailwind`bg-gray-800` : null, // Apply a background color if active
+                tailwind`text-2xl text-blue-200 w-25 pl-2 pt-1 pb-1 rounded-lg `,
+                !isLogin ? tailwind`bg-zinc-900 ` : null, // Apply a background color if active
               ]}
               onPress={() => toggleForm(false)}
             >

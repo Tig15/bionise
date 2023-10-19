@@ -6,7 +6,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Sidebar from "../../components/Sidebar";
 import Categories from "../../components/Categories";
 import tailwind from "twrnc";
-import LocationDetector from "../../components/Locationdetector.js";
+import LocationDetector from "../../components/Locationdetector.js/index.js";
+import SetToken from "../../components/useStorage/setToken";
+import GetToken from "../../components/useStorage/getToken";
 
 const Home = () => {
   const insets = useSafeAreaInsets();
@@ -24,11 +26,9 @@ const Home = () => {
         )}
         <View
           style={
-            Platform.OS == "web" ? tailwind`absolute top-30 left-60` : null
+            Platform.OS == "web" ? tailwind`absolute top-20 left-50` : null
           }
-        >
-          <LocationDetector />
-        </View>
+        ></View>
       </View>
     </>
   );

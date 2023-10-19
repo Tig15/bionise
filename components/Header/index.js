@@ -76,7 +76,7 @@ const Header = ({ userInfo }) => {
       <View
         style={tailwind`bg-white rounded-md p-5 absolute top-16 right-[50px] w-30 z-10`}
       >
-        <TouchableOpacity onPress={() => router.push("user")}>
+        <TouchableOpacity onPress={() => router.push("/user")}>
           <Text style={tailwind`text-slate-800 text-lg mb-2`}>Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLogOut}>
@@ -125,12 +125,7 @@ const Header = ({ userInfo }) => {
     <View
       style={tailwind`w-full bg-slate-800 h-15 shadow-xl rounded-br-xl rounded-bl-xl`}
     >
-      {isAuthenticated ? (
-        renderAuthenticatedContent()
-      ) : (
-        <Text style={tailwind`text-2xl text-white ml-4 mt-3`}>Bio-Nise</Text>
-      )}
-      {isAuthenticated && isDropdownMenuOpen && renderDropdownMenu()}
+      <Text style={tailwind`text-2xl text-white ml-4 mt-3`}>Bio-Nise</Text>
     </View>
   );
 };

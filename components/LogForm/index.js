@@ -27,7 +27,6 @@ const LogForm = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-
       router.replace("/");
     } catch (error) {
       console.error(error.message);
@@ -48,7 +47,7 @@ const LogForm = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <View
-            style={tailwind`border w-[320px] h-[300px] justify-center items-center rounded-lg bg-slate-100`}
+            style={tailwind` w-[320px] h-[300px] justify-center items-center rounded-lg bg-slate-100`}
           >
             <View style={tailwind`mb-4 gap-1`}>
               <TextInput
@@ -113,19 +112,6 @@ const LogForm = () => {
             >
               <Text style={tailwind`text-blue-800 text-sm`}>Login</Text>
             </TouchableOpacity>
-
-            {Platform.OS == "web" ? (
-              []
-            ) : (
-              <View style={tailwind`flex flex-col items-center mt-5 gap-2`}>
-                <Text style={tailwind`text-xs`}>Not Registered?</Text>
-                <Pressable onPress={() => router.replace("/user/register")}>
-                  <Text style={tailwind`text-xs underline `}>
-                    Create Your Own Account
-                  </Text>
-                </Pressable>
-              </View>
-            )}
           </View>
         )}
       </Formik>
