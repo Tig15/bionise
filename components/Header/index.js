@@ -7,6 +7,8 @@ import AuthModal from "../Modal";
 import withUserInfo from "../../firebase/withUserInfo";
 import { getAuth, signOut } from "firebase/auth";
 import { FIREBASE_APP } from "../../firebase/firebaseConfig";
+import Cookies from "js-cookie";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Header = ({ userInfo }) => {
   const router = useRouter();
@@ -32,6 +34,15 @@ const Header = ({ userInfo }) => {
     const auth = getAuth(FIREBASE_APP);
     try {
       await signOut(auth);
+
+      if (Platform.OS === "web") {
+        Cookies.remove("email");
+        Cookies.remove("rememberMe");
+      } else {
+        await AsyncStorage.removeItem("email");
+        await AsyncStorage.removeItem("rememberMe");
+      }
+
       router.replace("/");
     } catch (error) {
       console.log("Error Logging Out", error.message);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -16,17 +16,64 @@ import { useRouter } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { FIREBASE_APP } from "../../firebase/firebaseConfig";
+import Cookies from "js-cookie";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LogForm = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    loadSavedCredentials();
+  }, []);
+
+  const loadSavedCredentials = async () => {
+    if (Platform.OS === "web") {
+      const savedEmail = Cookies.get("email");
+      const savedRememberMe = Cookies.get("rememberMe");
+
+      if (savedEmail && savedRememberMe === "true") {
+        setEmail(savedEmail);
+        setRememberMe(true);
+      }
+    } else {
+      const savedEmail = await AsyncStorage.getItem("email");
+      const savedRememberMe = await AsyncStorage.getItem("rememberMe");
+
+      if (savedEmail && savedRememberMe && savedPassword === "true") {
+        setEmail(savedEmail);
+        setRememberMe(true);
+      }
+    }
+  };
 
   const handleLogin = async (values) => {
-    const { email, password } = values;
     const auth = getAuth(FIREBASE_APP);
-
+    const { email, password } = values;
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      if (rememberMe) {
+        if (Platform.OS === "web") {
+          Cookies.set("email", email, { expires: 365 });
+          Cookies.set("rememberMe", "true", { expires: 365 });
+        } else {
+          await AsyncStorage.setItem("email", email);
+          await AsyncStorage.setItem("rememberMe", "true");
+        }
+      } else {
+        if (Platform.OS === "web") {
+          Cookies.remove("email");
+          Cookies.remove("rememberMe");
+          Cookies.remove("passsword");
+        } else {
+          await AsyncStorage.removeItem("email");
+          await AsyncStorage.removeItem("rememberMe");
+        }
+      }
 
       router.replace("/");
     } catch (error) {
@@ -48,7 +95,7 @@ const LogForm = () => {
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
           <View
-            style={tailwind` w-[320px] h-[300px] justify-center items-center rounded-lg bg-slate-100`}
+            style={tailwind` w-[320px] h-[300px] justify-center items-center rounded-2xl bg-slate-100`}
           >
             <View style={tailwind`mb-4 gap-1`}>
               <TextInput
@@ -107,8 +154,36 @@ const LogForm = () => {
               )}
             </View>
 
+            <View style={tailwind`absolute bottom-23 left-1`}>
+              <Pressable
+                style={({ pressed }) => [
+                  tailwind`w-40 flex-row justify-center items-center  border-slate-950 gap-2 mb-1 rounded`,
+                  pressed && { backgroundColor: "lightgrey" },
+                ]}
+                onPress={() => setRememberMe(!rememberMe)}
+              >
+                <Text style={tailwind`text-black`}>Remember Me</Text>
+                {rememberMe && (
+                  <MaterialCommunityIcons
+                    name="checkbox-marked"
+                    size={20}
+                    color="#072541"
+                    style={tailwind``}
+                  />
+                )}
+                {!rememberMe && (
+                  <MaterialCommunityIcons
+                    name="checkbox-blank-outline"
+                    size={20}
+                    color="#072541"
+                    style={tailwind``}
+                  />
+                )}
+              </Pressable>
+            </View>
+
             <TouchableOpacity
-              style={tailwind`border border-blue-800 p-2 rounded items-center mt-2 w-70  `}
+              style={tailwind`border border-blue-800 p-2 rounded items-center mt-6 w-70`}
               onPress={handleSubmit}
             >
               <Text style={tailwind`text-blue-800 text-sm`}>Login</Text>

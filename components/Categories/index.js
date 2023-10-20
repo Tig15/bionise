@@ -11,6 +11,9 @@ const Categories = () => {
     { id: "/store", name: "All" },
     { id: "/store/featured", name: "Featured" },
     { id: "/store/popular", name: "Popular" },
+    { id: "/store/credit", name: "Credit" },
+    { id: "/store/doubleCb", name: "Double Cashback" },
+    { id: "/store/onlineService", name: "Online Service" },
   ];
 
   const renderItem = ({ item }) => (
@@ -27,14 +30,14 @@ const Categories = () => {
   );
 
   return (
-    <View style={tailwind`flex-1 `}>
+    <View style={tailwind`flex-1 mr-10`}>
       <FlatList
         data={categories}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={tailwind`gap-4`}
+        contentContainerStyle={tailwind`gap-4 `}
       />
     </View>
   );

@@ -5,6 +5,8 @@ import withUserInfo from "../../firebase/withUserInfo";
 import { getAuth, signOut } from "firebase/auth";
 import { FIREBASE_APP } from "../../firebase/firebaseConfig";
 import tailwind from "twrnc";
+import Cookies from "js-cookie";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const UserInfo = ({ userInfo }) => {
   const router = useRouter();
@@ -13,6 +15,15 @@ const UserInfo = ({ userInfo }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+
+      if (Platform.OS === "web") {
+        Cookies.remove("email");
+        Cookies.remove("rememberMe");
+      } else {
+        await AsyncStorage.removeItem("email");
+        await AsyncStorage.removeItem("rememberMe");
+      }
+
       router.replace("/");
     } catch (error) {
       console.error("Error logging out:", error);
@@ -70,7 +81,7 @@ const UserInfo = ({ userInfo }) => {
             </View>
             <TouchableOpacity
               onPress={handleLogout}
-              style={tailwind`absolute bottom-5 right-5 rounded p-1 bg-slate-900`}
+              style={tailwind`absolute bottom-20 right-8 rounded p-1 bg-slate-900`}
             >
               <Text style={tailwind`text-white text-sm`}>Log-Out</Text>
             </TouchableOpacity>

@@ -8,6 +8,9 @@ const StoreLayout = () => {
       <Stack.Screen name="index" />
       <Stack.Screen name="featured" />
       <Stack.Screen name="popular" />
+      <Stack.Screen name="credit" />
+      <Stack.Screen name="doubleCb" />
+      <Stack.Screen name="onlineService" />
     </Stack>
   );
 };

@@ -32,18 +32,36 @@ const Sidebar = () => {
       {showStoreOptions && (
         <View style={tailwind`bg-gray-700 p-1`}>
           <Pressable onPress={() => router.push("/store")}>
-            <Text style={tailwind`text-lg text-slate-100  ml-5`}>All</Text>
+            <Text style={tailwind`text-base text-slate-100  ml-5`}>All</Text>
           </Pressable>
 
           <Pressable onPress={() => router.push("/store/featured")}>
-            <Text style={tailwind`text-lg text-slate-100 mt-2 ml-5`}>
+            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
               Featured
             </Text>
           </Pressable>
 
           <Pressable onPress={() => router.push("/store/popular")}>
-            <Text style={tailwind`text-lg text-slate-100 mt-2 ml-5`}>
+            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
               Popular
+            </Text>
+          </Pressable>
+
+          <Pressable onPress={() => router.push("/store/credit")}>
+            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
+              Credit
+            </Text>
+          </Pressable>
+
+          <Pressable onPress={() => router.push("/store/doubleCb")}>
+            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
+              Double Cashback
+            </Text>
+          </Pressable>
+
+          <Pressable onPress={() => router.push("/store/onlineService")}>
+            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
+              Online Service
             </Text>
           </Pressable>
         </View>

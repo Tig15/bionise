@@ -72,8 +72,8 @@ const RegForm = () => {
           <View
             style={
               Platform.OS == "web"
-                ? tailwind` w-[400px] h-[440px] justify-center items-center rounded-lg bg-slate-100`
-                : tailwind` w-[350px] h-[440px] pt-7 ml-[-12px]  items-center rounded bg-slate-100`
+                ? tailwind` w-[400px] h-[440px] justify-center items-center rounded-2xl bg-slate-100`
+                : tailwind` w-[350px] h-[443px] pt-7 ml-[-12px]  items-center rounded-2xl bg-slate-100`
             }
           >
             <View style={tailwind`mb-3 gap-1`}>
@@ -83,7 +83,7 @@ const RegForm = () => {
                 onChangeText={handleChange("firstName")}
                 onBlur={handleBlur("firstName")}
                 value={values.firstName}
-                style={tailwind`w-80 h-10 border-slate-950 border mb-4 px-2 rounded`}
+                style={tailwind`w-75 h-10 border-slate-950 border mb-4 px-2 rounded`}
               />
               {touched.firstName && errors.firstName && (
                 <Text
@@ -101,7 +101,7 @@ const RegForm = () => {
                 onChangeText={handleChange("lastName")}
                 onBlur={handleBlur("lastName")}
                 value={values.lastName}
-                style={tailwind`w-80 h-10 border-slate-950 border mb-4 px-2 rounded`}
+                style={tailwind`w-75 h-10 border-slate-950 border mb-4 px-2 rounded`}
               />
               {touched.lastName && errors.lastName && (
                 <Text
@@ -119,7 +119,7 @@ const RegForm = () => {
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
                 value={values.email}
-                style={tailwind`w-80 h-10 border-slate-950 border mb-4 px-2 rounded`}
+                style={tailwind`w-75 h-10 border-slate-950 border mb-4 px-2 rounded`}
               />
               {touched.email && errors.email && (
                 <Text
@@ -133,7 +133,7 @@ const RegForm = () => {
             <View style={tailwind`mb-3 gap-1`}>
               <View style={tailwind`relative`}>
                 <TextInput
-                  style={tailwind`w-80 h-10 border-slate-950 border mb-4 px-2 rounded`}
+                  style={tailwind`w-75 h-10 border-slate-950 border mb-4 px-2 rounded`}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -172,7 +172,7 @@ const RegForm = () => {
             <View style={tailwind`mb-3 gap-1`}>
               <View style={tailwind`relative`}>
                 <TextInput
-                  style={tailwind`w-80 h-10 border-slate-950 border mb-4 px-2 rounded`}
+                  style={tailwind`w-75 h-10 border-slate-950 border mb-4 px-2 rounded`}
                   onChangeText={handleChange("confirmPassword")}
                   onBlur={handleBlur("confirmPassword")}
                   value={values.confirmPassword}
@@ -209,10 +209,10 @@ const RegForm = () => {
             </View>
 
             <TouchableOpacity
-              style={tailwind`bg-blue-800 p-2 rounded items-center mt-2 w-80  `}
+              style={tailwind`border border-blue-800 p-2 rounded items-center w-75`}
               onPress={handleSubmit}
             >
-              <Text style={tailwind`text-slate-100 text-sm`}>Sign-Up</Text>
+              <Text style={tailwind`text-blue-800 text-sm`}>Sign-Up</Text>
             </TouchableOpacity>
           </View>
         )}
