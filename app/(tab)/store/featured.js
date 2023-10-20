@@ -16,7 +16,15 @@ const FirstCat = () => {
       <View style={tailwind`h-full w-full bg-slate-400 overflow-hidden`}>
         <Header />
         {Platform.OS == "web" ? <Sidebar /> : []}
-        <CategoryList title={"First Categories"} data={firstCat} />
+        <View
+          style={
+            Platform.OS == "web"
+              ? tailwind`absolute w-full h-full top-20 left-45`
+              : tailwind`flex-1`
+          }
+        >
+          <CategoryList title="Featured" data={firstCat} />
+        </View>
       </View>
     </>
   );

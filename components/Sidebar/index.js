@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import tailwind from "twrnc";
 import { Entypo } from "@expo/vector-icons";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -10,21 +10,15 @@ const Sidebar = () => {
 
   const storeShow = () => {
     setShowStoreOptions(!showStoreOptions);
-    router.push("/store");
   };
 
-  const navigation = useNavigation();
-
   return (
-    <View style={tailwind`h-[786px] bg-slate-600 w-38 gap-6`}>
-      <TouchableOpacity onPress={() => router.push("/")}>
+    <View style={tailwind`h-[776px] bg-slate-600 w-42 gap-6`}>
+      <Pressable onPress={() => router.push("/")}>
         <Text style={tailwind`text-xl text-slate-100 ml-6 mt-4`}>Home</Text>
-      </TouchableOpacity>
+      </Pressable>
 
-      <TouchableOpacity
-        onPress={storeShow}
-        style={tailwind`flex-row items-center`}
-      >
+      <Pressable onPress={storeShow} style={tailwind`flex-row items-center`}>
         <Text style={tailwind`text-xl text-slate-100 ml-6 mt-2`}>Store</Text>
         <View style={tailwind`ml-[6px] mt-[7px]`}>
           <Entypo
@@ -33,25 +27,25 @@ const Sidebar = () => {
             color="white"
           />
         </View>
-      </TouchableOpacity>
+      </Pressable>
 
       {showStoreOptions && (
-        <View style={tailwind` bg-gray-700 p-2`}>
-          <TouchableOpacity onPress={() => router.push("/store")}>
+        <View style={tailwind`bg-gray-700 p-1`}>
+          <Pressable onPress={() => router.push("/store")}>
             <Text style={tailwind`text-lg text-slate-100  ml-5`}>All</Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity onPress={() => router.push("/store/firstCat")}>
+          <Pressable onPress={() => router.push("/store/featured")}>
             <Text style={tailwind`text-lg text-slate-100 mt-2 ml-5`}>
-              First
+              Featured
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity onPress={() => router.push("/store/secCat")}>
+          <Pressable onPress={() => router.push("/store/popular")}>
             <Text style={tailwind`text-lg text-slate-100 mt-2 ml-5`}>
-              Second
+              Popular
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       )}
     </View>

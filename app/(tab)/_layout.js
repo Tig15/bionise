@@ -1,12 +1,12 @@
 import { View, Text, Platform } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { Stack, Tabs } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const MainLayout = () => {
   return Platform.OS == "web" ? (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
+      <Stack.Screen name="home" />
       <Stack.Screen name="store" />
       <Stack.Screen name="user" />
     </Stack>

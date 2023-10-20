@@ -20,6 +20,7 @@ const withUserInfo = (WrappedComponent) => {
       if (user) {
         const userId = user.uid;
         const userDocRef = doc(db, "users", userId);
+        console.log("User Doc", userDocRef);
 
         try {
           const userDocSnapshot = await getDoc(userDocRef);

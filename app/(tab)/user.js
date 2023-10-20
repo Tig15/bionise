@@ -1,15 +1,28 @@
 import { View, Text, Platform } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { StatusBar } from "expo-status-bar";
 import Sidebar from "../../components/Sidebar";
 import tailwind from "twrnc";
 import UserInfo from "../../components/UserInfo";
-import withUserInfo from "../../firebase/withUserInfo";
 import AuthInfo from "../../components/AuthInfo";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { FIREBASE_APP } from "../../firebase/firebaseConfig";
 
-const User = ({ userInfo }) => {
-  const isAuthenticated = userInfo !== null;
+const User = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth(FIREBASE_APP);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  console.log("User", user);
+
   return (
     <>
       <StatusBar hidden />
@@ -25,10 +38,12 @@ const User = ({ userInfo }) => {
         >
           {Platform.OS == "web" ? (
             <UserInfo />
-          ) : isAuthenticated ? (
+          ) : user ? (
             <UserInfo />
           ) : (
-            <AuthInfo />
+            <View style={tailwind`flex-1 justify-center items-center`}>
+              <AuthInfo />
+            </View>
           )}
         </View>
       </View>
@@ -36,4 +51,4 @@ const User = ({ userInfo }) => {
   );
 };
 
-export default withUserInfo(User);
+export default User;

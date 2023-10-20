@@ -6,8 +6,8 @@ const StoreLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
-      <Stack.Screen name="firstCat" />
-      <Stack.Screen name="secCat" />
+      <Stack.Screen name="featured" />
+      <Stack.Screen name="popular" />
     </Stack>
   );
 };

@@ -17,7 +17,15 @@ const Stores = () => {
       <View style={tailwind`h-full w-full bg-slate-400 overflow-hidden`}>
         <Header />
         {Platform.OS == "web" ? <Sidebar /> : []}
-        <CategoryList title="All Stores" data={allStores} />
+        <View
+          style={
+            Platform.OS == "web"
+              ? tailwind`absolute w-full h-full top-20 left-45`
+              : tailwind`flex-1`
+          }
+        >
+          <CategoryList title="All Stores" data={allStores} />
+        </View>
       </View>
     </>
   );

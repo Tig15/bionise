@@ -27,6 +27,7 @@ const LogForm = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
       router.replace("/");
     } catch (error) {
       console.error(error.message);
