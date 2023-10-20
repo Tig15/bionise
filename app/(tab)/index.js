@@ -20,7 +20,9 @@ const Home = () => {
         {Platform.OS == "web" ? (
           <Sidebar />
         ) : (
-          <View style={tailwind`h-10 w-full mt-5 ml-6`}>
+          <View
+            style={tailwind`h-14  p-3 w-[95%] bg-zinc-900 rounded-lg mt-5 ml-3`}
+          >
             <Categories />
           </View>
         )}

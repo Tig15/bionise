@@ -21,16 +21,14 @@ const Categories = () => {
       onPress={() => router.push(item.id)}
       style={tailwind`rounded-lg bg-zinc-800 `}
     >
-      <Text
-        style={tailwind`pt-1 pl-2 pr-2 text-lg text-slate-300 font-medium `}
-      >
+      <Text style={tailwind`pl-2 pr-2 text-lg text-slate-300 font-medium `}>
         {item.name}
       </Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={tailwind`flex-1 mr-10`}>
+    <View style={tailwind`flex-1 w-full mr-10 `}>
       <FlatList
         data={categories}
         renderItem={renderItem}

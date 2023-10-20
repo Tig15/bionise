@@ -32,7 +32,7 @@ const MainLayout = () => {
         tabBarStyle: {
           backgroundColor: "#1F283B",
           position: "absolute",
-          bottom: 2,
+          bottom: 4,
           left: 20,
           right: 20,
           borderRadius: 14,
