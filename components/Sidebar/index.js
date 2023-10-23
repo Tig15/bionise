@@ -41,6 +41,11 @@ const Sidebar = ({ data }) => {
 
       {showStoreOptions && (
         <View style={tailwind`bg-gray-700 p-1`}>
+          <Pressable onPress={() => router.push(`/store`)}>
+            <Text style={tailwind`text-base text-slate-100  ml-5`}>
+              All Stores
+            </Text>
+          </Pressable>
           <FlatList data={data} renderItem={renderCatName} />
         </View>
       )}

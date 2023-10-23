@@ -41,7 +41,7 @@ const SecondLayout = () => {
               : tailwind`flex-1`
           }
         >
-          <CategoryList title={id} data={featCat} />
+          <CategoryList title={id} data={storesByCategory[1]} />
         </View>
       </View>
     </>
