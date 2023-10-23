@@ -14,7 +14,7 @@ const Sidebar = ({ data }) => {
 
   const renderCatName = ({ item }) => {
     return (
-      <Pressable onPress={() => router.push("/store/90")}>
+      <Pressable onPress={() => router.push(`/store/${item?.name}`)}>
         <Text style={tailwind`text-base text-slate-100  ml-5`}>
           {item?.name}
         </Text>

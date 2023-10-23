@@ -21,6 +21,11 @@ const Stores = () => {
   const featuredStores = data[5]?.["procash/featured-stores"];
   const featCat = featuredStores?.categories;
 
+  const allStoresMerged = featCat
+    ? featCat.reduce((acc, category) => acc.concat(category.stores), [])
+    : [];
+  console.log("Merged", allStoresMerged);
+
   console.log("Featured Cat", featCat);
 
   return (
@@ -36,7 +41,7 @@ const Stores = () => {
               : tailwind`flex-1`
           }
         >
-          <CategoryList title="All Stores" data={featCat} />
+          <CategoryList title="All Stores" data={allStoresMerged} />
         </View>
       </View>
     </>

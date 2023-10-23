@@ -24,20 +24,20 @@ const SingleStore = ({ store, visible, onClose }) => {
           <View style={tailwind`items-center mt-10`}>
             <View style={tailwind`w-[320px] h-[100px] mb-4`}>
               <Image
-                source={{ uri: store.logo }}
+                source={{ uri: store?.logo }}
                 style={tailwind`w-full h-full rounded-lg `}
               />
             </View>
             <Text
               style={tailwind`text-xl uppercase text-center text-slate-900 font-semibold`}
             >
-              {store.name}
+              {store?.name}
             </Text>
             <Text style={tailwind`text-[10px] text-gray-600 mb-4`}>
-              {store.cashback_string}
+              {store?.cashback_string}
             </Text>
             <Text style={tailwind`text-base text-center text-slate-600`}>
-              {store.description}
+              {store?.description}
             </Text>
           </View>
           {Platform.OS == "web" ? (

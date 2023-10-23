@@ -6,7 +6,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 const CategoryList = ({ title, data }) => {
-  console.log("Data", data);
   return Platform.OS === "web" ? (
     <View>
       <View style={tailwind`text-2xl w-[20%] `}>
