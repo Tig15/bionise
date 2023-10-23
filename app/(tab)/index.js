@@ -7,6 +7,7 @@ import Categories from "../../components/Categories";
 import tailwind from "twrnc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataRequest } from "../../redux/Action/action";
+import CardSlider from "../../components/Slider";
 // import SetToken from "../../components/useStorage/setToken";
 // import GetToken from "../../components/useStorage/getToken";
 
@@ -20,11 +21,18 @@ const Home = () => {
 
   const featuredStores = data[5]?.["procash/featured-stores"];
   const featCat = featuredStores?.categories;
+
+  const sliders = data[3]?.["procash/slider"];
+  const slides = sliders?.slides;
+
   return (
     <>
       <StatusBar hidden />
       <View style={tailwind`h-full w-full bg-slate-400 overflow-hidden`}>
         <Header />
+        <View style={tailwind`absolute top-40 left-70`}>
+          <CardSlider cardData={slides} />
+        </View>
         {Platform.OS == "web" ? (
           <Sidebar data={featCat} />
         ) : (
@@ -34,11 +42,6 @@ const Home = () => {
             <Categories data={featCat} />
           </View>
         )}
-        <View
-          style={
-            Platform.OS == "web" ? tailwind`absolute top-20 left-50` : null
-          }
-        ></View>
       </View>
     </>
   );
