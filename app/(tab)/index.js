@@ -30,14 +30,29 @@ const Home = () => {
       <StatusBar hidden />
       <View style={tailwind`h-full w-full bg-slate-400 overflow-hidden`}>
         <Header />
-        <View style={tailwind`absolute top-40 left-70`}>
-          <CardSlider cardData={slides} />
-        </View>
+
         {Platform.OS == "web" ? (
-          <Sidebar data={featCat} />
+          <>
+            <Sidebar data={featCat} />
+            {/* <View style={tailwind`absolute top-50 left-160`}>
+              {slides ? (
+                <CardSlider cardData={slides} />
+              ) : (
+                <Text
+                  style={
+                    Platform.OS == "web"
+                      ? tailwind`text-2xl font-light uppercase`
+                      : tailwind`text-lg font-medium`
+                  }
+                >
+                  Loading your slides
+                </Text>
+              )}
+            </View> */}
+          </>
         ) : (
           <View
-            style={tailwind`h-14  p-3 w-[95%] bg-zinc-900 rounded-lg mt-5 ml-3`}
+            style={tailwind`h-14 p-3 w-[95%] bg-zinc-900 rounded-lg mt-5 ml-3`}
           >
             <Categories data={featCat} />
           </View>
