@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { View, Image } from "react-native";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+import { View, Image, Dimensions } from "react-native";
 import tailwind from "twrnc";
+import Carousel from "react-native-reanimated-carousel";
+import AnimatedDotsCarousel from "react-native-animated-dots-carousel";
 
 const CardSlider = ({ cardData }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [index, setIndex] = useState(0);
+  const width = Dimensions.get("window").width;
+  const cardArray = Object.values(cardData);
 
   const renderCard = ({ item }) => (
-    <View style={tailwind`w-64 h-72 mx-2`}>
+    <View style={tailwind`w-[30%] h-[30%]`}>
       <Image
         source={{ uri: item.image_url.en }}
         style={tailwind`w-full h-full object-cover`}
@@ -15,23 +18,59 @@ const CardSlider = ({ cardData }) => {
     </View>
   );
 
+  const handleIndex = (index) => {
+    setIndex(index);
+  };
+
   return (
-    <View>
+    <View style={tailwind`flex-1`}>
       <Carousel
-        data={cardData}
+        loop
+        width={width}
+        height={width / 2}
+        data={cardArray}
         renderItem={renderCard}
-        sliderWidth={320} // Set your desired slider width
-        itemWidth={200} // Set your desired item width
-        onSnapToItem={(index) => setActiveSlide(index)}
-        loop={true}
+        pagingEnabled={true}
+        autoPlay={false}
+        interpolateOpacityAndColor={false}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10],
+        }}
+        onProgressChange={(_, absoluteProgress) => {
+          handleIndex(Math.round(absoluteProgress));
+        }}
       />
-      <Pagination
-        dotsLength={cardData.length}
-        activeDotIndex={activeSlide}
-        dotStyle={tailwind`w-3 h-3 rounded-full m-2 bg-blue-500`}
-        containerStyle={tailwind`pt-2`}
-        inactiveDotStyle={tailwind`w-3 h-3 rounded-full m-2 bg-gray-300`}
-      />
+
+      <View style={tailwind`absolute left-63 top-78`}>
+        <AnimatedDotsCarousel
+          length={cardArray.length}
+          currentIndex={index}
+          maxIndicators={cardArray.length}
+          interpolateOpacityAndColor={false}
+          activeIndicatorConfig={{
+            color: "#EC3C4C",
+            margin: 3,
+            opacity: 1,
+            size: 8,
+          }}
+          inactiveIndicatorConfig={{
+            color: "#F96B2B",
+            margin: 3,
+            opacity: 0.5,
+            size: 8,
+          }}
+          decreasingDots={[
+            {
+              config: { color: "#F96B2B", margin: 3, opacity: 0.5, size: 6 },
+              quantity: 1,
+            },
+            {
+              config: { color: "#F96B2B", margin: 3, opacity: 0.5, size: 4 },
+              quantity: 1,
+            },
+          ]}
+        />
+      </View>
     </View>
   );
 };

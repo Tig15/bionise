@@ -34,7 +34,7 @@ const Home = () => {
         {Platform.OS == "web" ? (
           <>
             <Sidebar data={featCat} />
-            {/* <View style={tailwind`absolute top-50 left-160`}>
+            <View style={tailwind`absolute top-50 left-160`}>
               {slides ? (
                 <CardSlider cardData={slides} />
               ) : (
@@ -48,7 +48,7 @@ const Home = () => {
                   Loading your slides
                 </Text>
               )}
-            </View> */}
+            </View>
           </>
         ) : (
           <View
