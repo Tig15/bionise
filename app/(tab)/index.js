@@ -34,7 +34,7 @@ const Home = () => {
         {Platform.OS == "web" ? (
           <>
             <Sidebar data={featCat} />
-            <View style={tailwind`absolute top-50 left-160`}>
+            <View style={tailwind`absolute top-70 left-190`}>
               {slides ? (
                 <CardSlider cardData={slides} />
               ) : (
