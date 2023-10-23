@@ -1,15 +1,25 @@
-import React, { useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, Pressable, FlatList } from "react-native";
 import tailwind from "twrnc";
 import { Entypo } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-const Sidebar = () => {
+const Sidebar = ({ data }) => {
   const router = useRouter();
   const [showStoreOptions, setShowStoreOptions] = useState(false);
 
   const storeShow = () => {
     setShowStoreOptions(!showStoreOptions);
+  };
+
+  const renderCatName = ({ item }) => {
+    return (
+      <Pressable onPress={() => router.push("/store/90")}>
+        <Text style={tailwind`text-base text-slate-100  ml-5`}>
+          {item?.name}
+        </Text>
+      </Pressable>
+    );
   };
 
   return (
@@ -31,39 +41,7 @@ const Sidebar = () => {
 
       {showStoreOptions && (
         <View style={tailwind`bg-gray-700 p-1`}>
-          <Pressable onPress={() => router.push("/store")}>
-            <Text style={tailwind`text-base text-slate-100  ml-5`}>All</Text>
-          </Pressable>
-
-          <Pressable onPress={() => router.push("/store/featured")}>
-            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
-              Featured
-            </Text>
-          </Pressable>
-
-          <Pressable onPress={() => router.push("/store/popular")}>
-            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
-              Popular
-            </Text>
-          </Pressable>
-
-          <Pressable onPress={() => router.push("/store/credit")}>
-            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
-              Credit
-            </Text>
-          </Pressable>
-
-          <Pressable onPress={() => router.push("/store/doubleCb")}>
-            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
-              Double Cashback
-            </Text>
-          </Pressable>
-
-          <Pressable onPress={() => router.push("/store/onlineService")}>
-            <Text style={tailwind`text-base text-slate-100 mt-2 ml-5`}>
-              Online Service
-            </Text>
-          </Pressable>
+          <FlatList data={data} renderItem={renderCatName} />
         </View>
       )}
     </View>

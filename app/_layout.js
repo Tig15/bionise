@@ -1,13 +1,14 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { Stack } from "expo-router";
+import MainLayout from "./root";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 const Layout = () => {
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tab)" />
-      <Stack.Screen name="login" />
-    </Stack>
+    <Provider store={store}>
+      <MainLayout />
+    </Provider>
   );
 };
 

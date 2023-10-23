@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const MainLayout = () => {
   return Platform.OS == "web" ? (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="home" />
+      <Stack.Screen name="index" />
       <Stack.Screen name="store" />
       <Stack.Screen name="user" />
     </Stack>

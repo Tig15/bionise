@@ -1,29 +1,37 @@
 import { View, Text, Platform } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import { StatusBar } from "expo-status-bar";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Sidebar from "../../components/Sidebar";
 import Categories from "../../components/Categories";
 import tailwind from "twrnc";
-import LocationDetector from "../../components/Locationdetector.js/index.js";
-import SetToken from "../../components/useStorage/setToken";
-import GetToken from "../../components/useStorage/getToken";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDataRequest } from "../../redux/Action/action";
+// import SetToken from "../../components/useStorage/setToken";
+// import GetToken from "../../components/useStorage/getToken";
 
 const Home = () => {
-  const insets = useSafeAreaInsets();
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state.data);
+
+  useEffect(() => {
+    dispatch(fetchDataRequest());
+  }, [dispatch]);
+
+  const featuredStores = data[5]?.["procash/featured-stores"];
+  const featCat = featuredStores?.categories;
   return (
     <>
       <StatusBar hidden />
       <View style={tailwind`h-full w-full bg-slate-400 overflow-hidden`}>
         <Header />
         {Platform.OS == "web" ? (
-          <Sidebar />
+          <Sidebar data={featCat} />
         ) : (
           <View
             style={tailwind`h-14  p-3 w-[95%] bg-zinc-900 rounded-lg mt-5 ml-3`}
           >
-            <Categories />
+            <Categories data={featCat} />
           </View>
         )}
         <View

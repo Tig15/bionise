@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, Platform } from "react-native";
 import React, { useState } from "react";
 import tailwind from "twrnc";
-import SingleStore from "../SingleStore.js";
+import SingleStore from "../SingleStore";
 
 const StoreCard = ({ store }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -10,7 +10,6 @@ const StoreCard = ({ store }) => {
     setModalVisible(!modalVisible);
   };
 
-  console.log("Store", store);
   return Platform.OS == "web" ? (
     <View>
       <TouchableOpacity

@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 const CategoryList = ({ title, data }) => {
+  console.log("Data", data);
   return Platform.OS === "web" ? (
     <View>
       <View style={tailwind`text-2xl w-[20%] `}>
@@ -15,7 +16,7 @@ const CategoryList = ({ title, data }) => {
       </View>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <StoreCard store={item} />}
         numColumns={7}
         columnWrapperStyle={tailwind`gap-10`}
@@ -34,7 +35,7 @@ const CategoryList = ({ title, data }) => {
       </View>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <StoreCard store={item} />}
         numColumns={2}
         columnWrapperStyle={tailwind`gap-6`}

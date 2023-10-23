@@ -3,26 +3,13 @@ import React from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import tailwind from "twrnc";
 
-const Categories = () => {
+const Categories = ({ data }) => {
   const router = useRouter();
 
-  // Create a data structure for your categories
-  const categories = [
-    { id: "/store", name: "All" },
-    { id: "/store/featured", name: "Featured" },
-    { id: "/store/popular", name: "Popular" },
-    { id: "/store/credit", name: "Credit" },
-    { id: "/store/doubleCb", name: "Double Cashback" },
-    { id: "/store/onlineService", name: "Online Service" },
-  ];
-
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      onPress={() => router.push(item.id)}
-      style={tailwind`rounded-lg bg-zinc-800 `}
-    >
+    <TouchableOpacity style={tailwind`rounded-lg bg-zinc-800 `}>
       <Text style={tailwind`pl-2 pr-2 text-lg text-slate-300 font-medium `}>
-        {item.name}
+        {item?.name}
       </Text>
     </TouchableOpacity>
   );
@@ -30,7 +17,7 @@ const Categories = () => {
   return (
     <View style={tailwind`flex-1 w-full mr-10 `}>
       <FlatList
-        data={categories}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         horizontal={true}
