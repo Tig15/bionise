@@ -13,7 +13,7 @@ const StoreCard = ({ store }) => {
   return Platform.OS == "web" ? (
     <View>
       <TouchableOpacity
-        style={tailwind`w-45 h-45 border border-slate-300 mb-2 rounded bg-slate-200`}
+        style={tailwind`w-51 h-52 border border-slate-300 mb-2 mt-2 rounded bg-slate-200`}
         onPress={toggleModal}
       >
         <View>
@@ -26,12 +26,12 @@ const StoreCard = ({ store }) => {
               {store?.name}
             </Text>
             <Text
-              style={tailwind`text-[7px] font-semibold absolute top-20 right-1`}
+              style={tailwind`text-[7px] font-semibold absolute top-27 right-1`}
             >
               {store?.cashback_string}
             </Text>
             <Text
-              style={tailwind`text-5xl absolute left-3 top-10 text-slate-300 opacity-40`}
+              style={tailwind`text-5xl absolute left-8 top-14 text-slate-300 opacity-60`}
             >
               {store?.alpha}
             </Text>

@@ -7,6 +7,7 @@ import Categories from "../../components/Categories";
 import tailwind from "twrnc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataRequest } from "../../redux/Action/action";
+
 // import SetToken from "../../components/useStorage/setToken";
 // import GetToken from "../../components/useStorage/getToken";
 
@@ -44,3 +45,5 @@ const Home = () => {
 };
 
 export default Home;
+
+//
