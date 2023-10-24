@@ -4,6 +4,7 @@ import tailwind from "twrnc";
 import LogForm from "../LogForm";
 import RegForm from "../RegForm";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 const AuthModal = ({ visible, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);

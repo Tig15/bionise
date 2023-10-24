@@ -7,6 +7,7 @@ import { FIREBASE_APP } from "../../firebase/firebaseConfig";
 import tailwind from "twrnc";
 import Cookies from "js-cookie";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import LocationDetector from "../Locationdetector";
 
 const UserInfo = ({ userInfo }) => {
   const router = useRouter();
@@ -62,6 +63,15 @@ const UserInfo = ({ userInfo }) => {
                 {userInfo.lastName}
               </Text>
             </View>
+            <View
+              style={tailwind`absolute top-140 left-6  flex-row justify-center items-center gap-5`}
+            >
+              <Text
+                style={tailwind`text-xl text-slate-200 rounded w-30  pl-[7px] `}
+              >
+                <LocationDetector />
+              </Text>
+            </View>
           </View>
         ) : (
           <>
@@ -77,6 +87,11 @@ const UserInfo = ({ userInfo }) => {
               >
                 <Text>Last Name: </Text>
                 <Text>{userInfo.lastName}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={tailwind`mb-2 border p-2 rounded-lg bg-slate-200`}
+              >
+                <LocationDetector />
               </TouchableOpacity>
             </View>
             <TouchableOpacity

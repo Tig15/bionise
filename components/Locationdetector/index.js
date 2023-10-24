@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from "react";
-import * as Location from "expo-location";
 import { Platform, Text, View } from "react-native";
+import tailwind from "twrnc";
 
 const LocationDetector = () => {
-  const [userLocation, setUserLocation] = useState(null);
   const [userCountry, setUserCountry] = useState(null);
 
   useEffect(() => {
-    getLocation();
+    setTimeout(() => {
+      fetchUserCountry();
+    }, 3000);
   }, []);
 
-  const getLocation = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status === "granted") {
-      const location = await Location.getCurrentPositionAsync({});
-      setUserLocation(location.coords);
-      reverseGeocode(location.coords);
-    }
-  };
-
-  const reverseGeocode = async (location) => {
-    const [address] = await Location.reverseGeocodeAsync(location);
-    if (address) {
-      const country = address.country;
-      setUserCountry(country);
-    } else {
-      setUserCountry("Unknown");
-    }
+  const fetchUserCountry = () => {
+    fetch("http://ip-api.com/json")
+      .then((response) => response.json())
+      .then((data) => {
+        const country = data.country;
+        console.log("IP Data", data);
+        setUserCountry(country);
+      })
+      .catch((error) => {
+        console.error(error);
+        setUserCountry("Unknown");
+      });
   };
 
   return (
-    <View>
-      <Text>User's Country: {userCountry}</Text>
+    <View
+      style={
+        Platform.OS == "web" ? null : tailwind`w-80 flex-row justify-between`
+      }
+    >
+      {Platform.OS == "web" ? null : <Text>Country:</Text>}
+      <Text>{userCountry}</Text>
     </View>
   );
 };

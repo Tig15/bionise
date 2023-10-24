@@ -7,7 +7,7 @@ import Categories from "../../components/Categories";
 import tailwind from "twrnc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataRequest } from "../../redux/Action/action";
-
+import LocationDetector from "../../components/Locationdetector";
 // import SetToken from "../../components/useStorage/setToken";
 // import GetToken from "../../components/useStorage/getToken";
 

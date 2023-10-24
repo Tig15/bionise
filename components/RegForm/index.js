@@ -73,7 +73,7 @@ const RegForm = () => {
             style={
               Platform.OS == "web"
                 ? tailwind` w-[400px] h-[440px] justify-center items-center rounded-2xl bg-slate-100`
-                : tailwind` w-[350px] h-[443px] pt-7 ml-[-12px]  items-center rounded-2xl bg-slate-100`
+                : tailwind` w-[340px] h-[443px] pt-7 ml-[-8px]  items-center rounded-2xl bg-slate-100`
             }
           >
             <View style={tailwind`mb-3 gap-1`}>
