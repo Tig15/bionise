@@ -41,7 +41,21 @@ const SecondLayout = () => {
               : tailwind`flex-1`
           }
         >
-          <CategoryList title={id} data={storesByCategory[0]} />
+          {id === "Handpicked" ? (
+            <CategoryList title={id} data={storesByCategory[0]} />
+          ) : (
+            []
+          )}
+          {id === "Women's" ? (
+            <CategoryList title={id} data={storesByCategory[1]} />
+          ) : (
+            []
+          )}
+          {id === "Online Games" ? (
+            <CategoryList title={id} data={storesByCategory[2]} />
+          ) : (
+            []
+          )}
         </View>
       </View>
     </>

@@ -64,15 +64,6 @@ const LogForm = () => {
           await AsyncStorage.setItem("email", email);
           await AsyncStorage.setItem("rememberMe", "true");
         }
-      } else {
-        if (Platform.OS === "web") {
-          Cookies.remove("email");
-          Cookies.remove("rememberMe");
-          Cookies.remove("passsword");
-        } else {
-          await AsyncStorage.removeItem("email");
-          await AsyncStorage.removeItem("rememberMe");
-        }
       }
 
       router.replace("/");
