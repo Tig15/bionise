@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Stack, Tabs } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const MainLayout = () => {
+const AnLayout = () => {
   return Platform.OS == "web" ? (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
@@ -50,4 +50,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout;
+export default AnLayout;
