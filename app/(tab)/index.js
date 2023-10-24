@@ -8,6 +8,7 @@ import tailwind from "twrnc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataRequest } from "../../redux/Action/action";
 import LocationDetector from "../../components/Locationdetector";
+import CustomSheet from "../../components/BottomSheet";
 // import SetToken from "../../components/useStorage/setToken";
 // import GetToken from "../../components/useStorage/getToken";
 
@@ -39,6 +40,7 @@ const Home = () => {
             <Categories data={featCat} />
           </View>
         )}
+        <CustomSheet />
       </View>
     </>
   );
