@@ -1,5 +1,5 @@
-import { View, Text, Platform } from "react-native";
-import React, { useEffect } from "react";
+import { View, Text, Platform, Pressable } from "react-native";
+import React, { useEffect, useRef } from "react";
 import Header from "../../components/Header";
 import { StatusBar } from "expo-status-bar";
 import Sidebar from "../../components/Sidebar";
@@ -8,7 +8,7 @@ import tailwind from "twrnc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataRequest } from "../../redux/Action/action";
 import LocationDetector from "../../components/Locationdetector";
-import CustomSheet from "../../components/BottomSheet";
+import MainLayout from "../root";
 // import SetToken from "../../components/useStorage/setToken";
 // import GetToken from "../../components/useStorage/getToken";
 
@@ -26,8 +26,11 @@ const Home = () => {
   const sliders = data[3]?.["procash/slider"];
   const slides = sliders?.slides;
 
+  const bottomSheetRef = useRef(null);
+
   return (
     <>
+      <MainLayout />
       <StatusBar hidden />
       <View style={tailwind`h-full w-full bg-slate-400 overflow-hidden`}>
         <Header />
@@ -40,7 +43,6 @@ const Home = () => {
             <Categories data={featCat} />
           </View>
         )}
-        <CustomSheet />
       </View>
     </>
   );

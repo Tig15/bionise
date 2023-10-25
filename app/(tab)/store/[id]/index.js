@@ -1,4 +1,4 @@
-import { View, Text, Platform } from "react-native";
+import { View, Text, Platform, FlatList } from "react-native";
 import React, { useEffect } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -22,11 +22,11 @@ const SecondLayout = () => {
   const featuredStores = data[5]?.["procash/featured-stores"];
   const featCat = featuredStores?.categories;
 
-  const storesByCategory = featCat
-    ? featCat.map((category) => category.stores)
-    : [];
+  const storesByCategory = featCat ? featCat.map((category) => category) : [];
 
   console.log("Separated", storesByCategory);
+  const DefaultStoreData = storesByCategory?.filter((a) => a.slug == "/");
+  const StoreByCat = storesByCategory?.filter((a) => a.id == id);
 
   return (
     <>
@@ -41,21 +41,7 @@ const SecondLayout = () => {
               : tailwind`flex-1`
           }
         >
-          {id === "Handpicked" ? (
-            <CategoryList title={id} data={storesByCategory[0]} />
-          ) : (
-            []
-          )}
-          {id === "Women's" ? (
-            <CategoryList title={id} data={storesByCategory[1]} />
-          ) : (
-            []
-          )}
-          {id === "Online Games" ? (
-            <CategoryList title={id} data={storesByCategory[2]} />
-          ) : (
-            []
-          )}
+          <CategoryList data={id != 0 ? StoreByCat[0] : DefaultStoreData[0]} />
         </View>
       </View>
     </>

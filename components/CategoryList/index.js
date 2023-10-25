@@ -5,16 +5,16 @@ import StoreCard from "../StoreCard";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
-const CategoryList = ({ title, data }) => {
+const CategoryList = ({ data }) => {
   return Platform.OS === "web" ? (
     <View>
       <View style={tailwind`text-2xl w-[20%] `}>
         <Text style={tailwind`text-2xl text-gray-900 pl-2 border-b mx-5 my-3 `}>
-          {title}:
+          {data?.name}:
         </Text>
       </View>
       <FlatList
-        data={data}
+        data={data?.stores}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <StoreCard store={item} />}
         numColumns={7}
@@ -29,7 +29,7 @@ const CategoryList = ({ title, data }) => {
           <MaterialCommunityIcons name="arrow-left" size={30} />
         </Pressable>
         <Text style={tailwind`text-2xl text-gray-900 border-b mx-3 my-3 `}>
-          {title}:
+          {data?.name}:
         </Text>
       </View>
       <FlatList
